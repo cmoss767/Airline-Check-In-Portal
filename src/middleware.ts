@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export function middleware(request: NextRequest) {
+  if (request.nextUrl.pathname === '/admin/unauthorized') {
+    return NextResponse.next();
+  }
+
   // This is a simplified check as requested.
   // It verifies that the secret key is defined in the server's environment.
   if (process.env.ADMIN_SECRET_KEY) {
@@ -8,11 +12,11 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // If the key is not configured on the server at all, block access
-  // to prevent running in an insecure state.
-  return new NextResponse('Unauthorized: Admin access is not configured on the server.', {
-    status: 401,
-  });
+  // If the key is not configured on the server, redirect to an
+  // informational page explaining that admin functionality is disabled.
+  const unauthorizedUrl = request.nextUrl.clone();
+  unauthorizedUrl.pathname = '/admin/unauthorized';
+  return NextResponse.redirect(unauthorizedUrl);
 }
 
 export const config = {
