@@ -1,0 +1,31 @@
+---
+description: "The core requirements for the Airline Check-In Portal MVP, based on the original project assignment. This rule outlines the key features for the frontend and backend, as well as bonus objectives."
+agentRequested: true
+---
+
+# Airline Check-In Portal: Core Requirements
+
+## ✈️ Scenario
+Build the MVP of an Airline Check-In System. Passengers can check in online, upload documents, and view their status. Airline staff can see all check-ins and update their status.
+
+## ✅ Frontend Requirements
+- **Use Next.js**
+- **Check-in Form UI:**
+  - A form for `Last Name` and `Confirmation Number`.
+  - On submit, it should call the check-in logic and provide a confirmation.
+- **Check-in Status Page:**
+  - Allow a user to input a confirmation number to fetch their status.
+  - Display: Passenger Name, Flight Info (Number, Destination), and Check-in status.
+
+## ✅ Backend Requirements
+- **Use PostgreSQL** (or MongoDB).
+- **Simulate/Integrate:**
+  - A storage service for document uploads (e.g., passport).
+  - A queue pattern for async processing (e.g., gate notifications).
+  - Basic, hardcoded auth to distinguish admin from passenger.
+
+## ⭐ Bonus Features
+- A scheduled background task to expire check-ins.
+- Responsive layout and clean, accessible UI.
+- Show loading/error states for API calls.
+- Optimistically update check-in status.

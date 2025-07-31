@@ -1,0 +1,19 @@
+---
+description: "Core architectural principles for the airline check-in project. Enforces the use of Server Actions for data fetching and mutations, ensuring security and performance."
+alwaysApply: true
+---
+# Core Architectural Principles
+
+1.  **Use TanStack Query and custom hooks for all client-side data fetching.**
+    -   All data fetching initiated from the client should be managed by TanStack Query (`@tanstack/react-query`) inside a custom hook (e.g., `useCheckInStatus`). This provides caching, loading/error states, and optimistic updates.
+
+2.  **Client-side hooks must call Server Actions.**
+    -   Do not use `fetch` within client components or hooks to call internal API routes. Instead, import and call Server Actions directly. This is more secure and efficient.
+    -   **Good:** `queryFn: () => fetchCheckIns()` (where `fetchCheckIns` is a Server Action)
+    -   **Bad:** `queryFn: () => fetch('/api/check-ins')`
+
+3.  **Server Actions must interact directly with the database.**
+    -   Server Actions should contain the actual server-side logic, such as calling the Prisma client. They should not make `fetch` requests to the application's own API routes.
+
+4.  **Use Next.js Middleware to protect routes.**
+    -   Authentication and authorization checks for pages and API endpoints should be handled in `src/middleware.ts`.

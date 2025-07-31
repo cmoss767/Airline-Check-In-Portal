@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Passenger {
+  id        String    @id @default(cuid())
+  firstName String
+  lastName  String
+  bookings  Booking[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Flight {
+  id             String    @id @default(cuid())
+  flightNumber   String
+  destination    String
+  departureTime  DateTime
+  bookings       Booking[]
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+model Booking {
+  id                 String    @id @default(cuid())
+  confirmationNumber String    @unique
+  passengerId        String
+  passenger          Passenger @relation(fields: [passengerId], references: [id])
+  flightId           String
+  flight             Flight    @relation(fields: [flightId], references: [id])
+  checkIn            CheckIn?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+}
+
+enum CheckInStatus {
+  NOT_CHECKED_IN
+  CHECKED_IN
+  EXPIRED
+  PROCESSING
+}
+
+model CheckIn {
+  id          String        @id @default(cuid())
+  bookingId   String        @unique
+  booking     Booking       @relation(fields: [bookingId], references: [id])
+  status      CheckInStatus @default(NOT_CHECKED_IN)
+  documentUrl String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+// For async processing simulation
+model Job {
+  id        String   @id @default(cuid())
+  checkInId String
+  processed Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

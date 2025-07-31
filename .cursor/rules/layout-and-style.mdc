@@ -1,0 +1,15 @@
+---
+description: "Rules for project structure, file locations, and coding style."
+alwaysApply: true
+---
+# Directory Layout & Coding Style
+
+-   **Co-locate Server Actions:** Server-side logic like data fetching and mutations should be placed in an `actions.ts` file alongside the page or components that use it (e.g., `src/app/admin/actions.ts`).
+
+-   **API Routes are for External Endpoints ONLY:** The `src/app/api/` directory should only be used for creating public, URL-addressable endpoints. The only API route in this project should be the CRON job (`/api/cron/expire-checkins`), which needs a public URL to be triggered by an external scheduler. All other client-server communication must use Server Actions.
+
+-   **Centralized Hooks:** Place all reusable custom hooks in the `src/hooks` directory.
+
+-   **Styling:** Always use Tailwind CSS for styling. Do not add component-specific CSS/SCSS files or use inline style objects.
+
+-   **Package Manager:** Use `pnpm` for all dependency management.
