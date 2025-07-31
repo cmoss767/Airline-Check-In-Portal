@@ -6,6 +6,7 @@
   --brand-blue: #2D72D2;
   --brand-green: #29A347;
   --brand-text: #374151;
+  --brand-red: #ef4444; /* red-500 */
 }
 
 @theme {
@@ -16,6 +17,7 @@
   --color-brand-blue: var(--brand-blue);
   --color-brand-green: var(--brand-green);
   --color-brand-text: var(--brand-text);
+  --color-brand-red: var(--brand-red);
 }
 
 body {

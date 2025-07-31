@@ -7,7 +7,7 @@ export const SearchForm = ({ onSubmit, isSubmitting }: { onSubmit: SubmitHandler
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 pt-4">
       <div>
-        <label htmlFor="confirmationNumber" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="confirmationNumber" className="block text-sm font-medium text-brand-text">
           Enter Confirmation Number
         </label>
         <input
@@ -16,7 +16,7 @@ export const SearchForm = ({ onSubmit, isSubmitting }: { onSubmit: SubmitHandler
           {...register('confirmationNumber', { required: 'Confirmation number is required.' })}
           className="block w-full px-4 py-3 mt-1 placeholder-gray-400 border border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-brand-blue focus:border-brand-blue"
         />
-        {errors.confirmationNumber && <p className="text-sm text-red-500">{errors.confirmationNumber.message}</p>}
+        {errors.confirmationNumber && <p className="text-sm text-brand-red">{errors.confirmationNumber.message}</p>}
       </div>
       <button
         type="submit"

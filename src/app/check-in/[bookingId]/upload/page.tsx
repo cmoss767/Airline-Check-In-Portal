@@ -46,27 +46,27 @@ export default function UploadPage() {
   }
 
   return (
-    <main className="flex flex-col items-center p-12 md:p-24 bg-gray-50">
+    <main className="flex flex-col items-center p-12 md:p-24 bg-background">
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold text-center text-gray-800">
+        <h1 className="text-2xl font-bold text-center text-foreground">
           Upload Your Document
         </h1>
-        <p className="text-sm text-center text-gray-600">
+        <p className="text-sm text-center text-brand-text">
           Upload your passport or other identification.
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div>
-            <label htmlFor="document" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="document" className="block text-sm font-medium text-brand-text">
               Select Document
             </label>
             <input
               id="document"
               type="file"
               {...register('document', { required: 'Please select a file to upload.' })}
-              className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-600 hover:file:bg-indigo-100"
+              className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-blue-50 file:text-brand-blue-600 hover:file:bg-brand-blue-100"
             />
-            {errors.document && <p className="text-sm text-red-500">{errors.document.message}</p>}
+            {errors.document && <p className="text-sm text-brand-red">{errors.document.message}</p>}
           </div>
 
           <div>

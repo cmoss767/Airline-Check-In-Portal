@@ -17,11 +17,11 @@ export default function StatusPage() {
 
   const renderContent = () => {
     if (isLoading) {
-      return <p className="text-center text-gray-500">Loading...</p>;
+      return <p className="text-center text-brand-text">Loading...</p>;
     }
 
     if (error) {
-      return <p className="text-center text-red-500">Error: {error.message}</p>;
+      return <p className="text-center text-brand-red">Error: {error.message}</p>;
     }
 
     if (displayData) {
@@ -32,9 +32,9 @@ export default function StatusPage() {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center p-4 py-12 sm:p-6 md:p-12 bg-gray-50">
+    <main className="flex flex-col items-center justify-center p-4 py-12 sm:p-6 md:p-12 bg-background">
       <div className="w-full max-w-md md:max-w-2xl p-8 space-y-6 bg-white rounded-xl shadow-lg">
-        <h1 className="text-3xl font-bold text-center text-gray-800">
+        <h1 className="text-3xl font-bold text-center text-foreground">
           Check-In Status
         </h1>
         <div className="p-6 border-t border-gray-200">
